@@ -10,6 +10,18 @@ jobs:
     steps:
       - name: Create empty repository
         run: |
-          # Replace <YOUR_USERNAME> with your GitHub username
-          # Replace <REPO_NAME> with the desired repository name
           echo "Finally echoing from github actions"
+          curl -X POST -H "Authorization: token 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" -d '{
+            "name": "testrepo2",
+            "auto_init": true,
+            "private": false
+          }' "https://api.github.com/user/repos"
+          git clone --depth 1 https://github.com/CocoaPods/Specs.git cocoapods
+          cd cocoapods
+          rm -rf .git
+          rm -rf .github
+          git remote remove origin
+          git remote set-url origin https://prdoddamani-deloitte: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@github.com/prdoddamani-deloitte/testrepo2.git
+          git add .
+          git commit -m "Commiting the Spec repo with depth 1"
+          git push -f origin main
