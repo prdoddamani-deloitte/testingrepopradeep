@@ -26,13 +26,13 @@ jobs:
           git init
           git config user.name "prdoddamani-deloitte"
           git config user.email "prdoddamani@deloitte.com"
-          git remote set-url origin https://prdoddamani-deloitte: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@github.com/prdoddamani-deloitte/testrepo2.git
+          git remote set-url origin https://prdoddamani-deloitte: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@github.com/prdoddamani-deloitte/testrepo2.git
           echo "remote-set url has been set"
           git add .
           ehco "added git files"
           git commit -m "Commiting the Spec repo with depth 1"
           echo "commited files"
-          curl -X POST -H "Authorization: token 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" -d '{
+          curl -X POST -H "Authorization: token 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" -d '{
             "name": "testrepo2",
             "auto_init": false,
             "private": false
