@@ -11,27 +11,32 @@ jobs:
       - name: Create empty repository
         run: |
           echo "Finally echoing from github actions"
-          curl -X POST -H "Authorization: token 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" -d '{
-            "name": "testrepo2",
-            "auto_init": true,
-            "private": false
-          }' "https://api.github.com/user/repos"
+
           git clone --depth 1 https://github.com/CocoaPods/Specs.git cocoapods
           echo "cloned repo"
           cd cocoapods
           echo "checked into cocoapods"
-          echo pwd
+          pwd
           ls -al
+          git remote remove origin
+          echo "removed origin"
           rm -rf .git
           rm -rf .github
           echo "removed git and github"
-          git remote remove origin
-          echo "removed origin"
-          git remote set-url origin https://prdoddamani-deloitte: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@github.com/prdoddamani-deloitte/testrepo2.git
+          git init
+          git config user.name "prdoddamani-deloitte"
+          git config user.email "prdoddamani@deloitte.com"
+          git remote set-url origin https://prdoddamani-deloitte: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@github.com/prdoddamani-deloitte/testrepo2.git
           echo "remote-set url has been set"
           git add .
           ehco "added git files"
           git commit -m "Commiting the Spec repo with depth 1"
           echo "commited files"
+          curl -X POST -H "Authorization: token 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" -d '{
+            "name": "testrepo2",
+            "auto_init": false,
+            "private": false
+          }' "https://api.github.com/user/repos"
+          echo "created repo"
           git push -f origin main
           echo "Pushed files to origin"
